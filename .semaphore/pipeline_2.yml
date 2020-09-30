@@ -18,6 +18,7 @@ blocks:
         - name: dockerhub
       prologue:
         commands:
+          - phpbrew switch 7.4.10
           - checkout
           - cd src
           - cache restore
