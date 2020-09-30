@@ -13,9 +13,9 @@ blocks:
             - sudo apt-get update
             - sudo apt-get install -y npm
             - echo "$DOCKER_PASSWORD" | docker login  --username "$DOCKER_USERNAME" --password-stdin
-            - 'docker pull "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:latest || true'
-            - 'docker build --cache-from "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:latest -t "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:$SEMAPHORE_WORKFLOW_ID .'
-            - 'docker push "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:$SEMAPHORE_WORKFLOW_ID'
+            - 'docker pull "$DOCKER_USERNAME"/semaphore-demo-php:latest || true'
+            - 'docker build --cache-from "$DOCKER_USERNAME"/semaphore-demo-php:latest -t "$DOCKER_USERNAME"/semaphore-demo-php:$SEMAPHORE_WORKFLOW_ID .'
+            - 'docker push "$DOCKER_USERNAME"/semaphore-demo-php:$SEMAPHORE_WORKFLOW_ID'
       secrets:
         - name: dockerhub
       prologue:
