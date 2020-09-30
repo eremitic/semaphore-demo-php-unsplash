@@ -13,9 +13,6 @@ blocks:
       jobs:
         - name: Build
           commands:
-            - sudo groupadd docker
-            - 'sudo usermod -aG docker ${USER}'
-            - 'su -s ${USER}'
             - echo "$DOCKER_PASSWORD" | docker login  --username "$DOCKER_USERNAME" --password-stdin
             - 'docker pull "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:latest || true'
             - 'docker build --cache-from "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:latest -t "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:$SEMAPHORE_WORKFLOW_ID .'
