@@ -9,8 +9,8 @@ blocks:
     task:
       prologue:
         commands:
-          - phpbrew --no-progress install 7.3
-          - sem-version php 7.3
+          - phpbrew --no-progress install 7.4
+          - sem-version php 7.4
       jobs:
         - name: Tests
           commands:
