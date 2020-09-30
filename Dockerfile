@@ -12,7 +12,7 @@ RUN chown -R www-data:www-data /var/www
 CMD ["start-apache"]
 
 RUN apt-get update && \
-    apt-get install nodejs
+    apt-get install nodejs -y
 
 ENV MYSQL_ROOT_PASSWORD=root
 ENV MYSQL_ROOT_USER=root
