@@ -4,15 +4,13 @@ agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
-  containers:
-    - name: main
-      image: 'semaphoreci/php:7.4.9-apache-node-browsers'
 blocks:
   - name: Install dependencies
     task:
       jobs:
         - name: Composer
           commands:
+            - phpbrew switch 7.4.10
             - checkout
             - cd src
             - cache restore
