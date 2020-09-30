@@ -3,18 +3,10 @@ name: CI Pipeline
 agent:
   machine:
     type: e1-standard-2
-    os_image: ubuntu1804
+  containers:
+  - name: main
+    image: semaphoreci/php:7.4.9-apache-node-browsers
 blocks:
-  - name: Php version
-    task:
-      prologue:
-        commands:
-          - phpbrew --no-progress install 7.4
-          - sem-version php 7.4
-      jobs:
-        - name: Tests
-          commands:
-            - php --version
   - name: Install dependencies
     task:
       jobs:
