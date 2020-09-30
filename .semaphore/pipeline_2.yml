@@ -3,7 +3,9 @@ name: Pipeline 2
 agent:
   machine:
     type: e1-standard-2
-    os_image: ubuntu1804
+  containers:
+    - name: main
+     image: 'semaphoreci/php:7.4.9-apache-node-browsers'
 blocks:
   - name: Docker build
     task:
