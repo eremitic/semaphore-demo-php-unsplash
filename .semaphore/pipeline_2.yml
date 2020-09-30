@@ -10,7 +10,8 @@ blocks:
       jobs:
         - name: Build
           commands:
-            - apt-get install npm
+            - sudo apt-get update
+            - sudo apt-get install -y npm
             - echo "$DOCKER_PASSWORD" | docker login  --username "$DOCKER_USERNAME" --password-stdin
             - 'docker pull "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:latest || true'
             - 'docker build --cache-from "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:latest -t "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:$SEMAPHORE_WORKFLOW_ID .'
