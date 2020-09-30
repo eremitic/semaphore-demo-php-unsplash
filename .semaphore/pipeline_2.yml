@@ -3,16 +3,18 @@ name: Pipeline 2
 agent:
   machine:
     type: e1-standard-2
+    os_image: ubuntu1804
   containers:
     - name: main
-      image: "semaphoreci/php:7.4.9-apache-node-browsers"
+      image: 'semaphoreci/php:7.4.9-apache-node-browsers'
 blocks:
   - name: Docker build
     task:
       jobs:
         - name: Build
           commands:
-            - echo "$DOCKER_PASSWORD"docker login  --username "$DOCKER_USERNAME" --password-stdin
+            - echo "$DOCKER_PASSWORD"
+            - docker login  --username "$DOCKER_USERNAME" --password-stdin
             - 'docker pull "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:latest || true'
             - 'docker build --cache-from "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:latest -t "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:$SEMAPHORE_WORKFLOW_ID .'
             - 'docker push "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:$SEMAPHORE_WORKFLOW_ID'
