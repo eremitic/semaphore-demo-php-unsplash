@@ -11,9 +11,9 @@ blocks:
         - name: Deploy
           commands:
             - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
-            - 'docker pull "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:$SEMAPHORE_WORKFLOW_ID'
+            - 'docker pull "$DOCKER_USERNAME"/semaphore-demo-php:$SEMAPHORE_WORKFLOW_ID'
             - 'heroku container:login'
-            - 'docker tag "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:$SEMAPHORE_WORKFLOW_ID registry.heroku.com/$HEROKU_APP/web'
+            - 'docker tag "$DOCKER_USERNAME"/semaphore-demo-php:$SEMAPHORE_WORKFLOW_ID registry.heroku.com/$HEROKU_APP/web'
             - 'docker push registry.heroku.com/$HEROKU_APP/web            '
             - 'heroku config:set UNSPLASH_ACCESS_KEY=$UNSPLASH_ACCESS_KEY'
             - 'heroku config:set UNSPLASH_SECRET_KEY=$UNSPLASH_SECRET_KEY'
@@ -35,8 +35,4 @@ blocks:
         - name: dockerhub
       jobs:
         - name: Tag latest image
-          commands:
-            - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
-            - 'docker pull "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:$SEMAPHORE_WORKFLOW_ID'
-            - 'docker tag "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:$SEMAPHORE_WORKFLOW_ID "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:latest'
-            - 'docker pull "$DOCKER_USERNAME"/semaphore-demo-php-unsplash:latest'
+          commands: []
