@@ -35,4 +35,8 @@ blocks:
         - name: dockerhub
       jobs:
         - name: Tag latest image
-          commands: []
+          commands:
+            - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
+            - 'docker pull "$DOCKER_USERNAME"/semaphore-demo-php:$SEMAPHORE_WORKFLOW_ID'
+            - 'docker tag "$DOCKER_USERNAME"/semaphore-demo-php:$SEMAPHORE_WORKFLOW_ID "$DOCKER_USERNAME"/semaphore-demo-php:latest'
+            - 'docker pull "$DOCKER_USERNAME"/semaphore-demo-php:latest'
